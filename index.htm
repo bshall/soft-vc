@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>Soft-VC Demo Page</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		body {
+			font-family: 'Roboto', sans-serif;
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 26px;
+			margin: 0;
+		}
+
+
+		table {
+			display: block;
+			width: 100%;
+			border-collapse: collapse;
+			overflow: auto;
+		}
+
+		.header {
+			background: #000000;
+			padding: 2px;
+			display: flex;
+			align-items: center;
+
+
+		}
+
+		.cont {
+			display: flex;
+			align-items: center;
+			justify-content: left;
+			flex-basis: 100%
+		}
+
+		.content {
+			padding: 20px;
+		}
+
+		.forge {
+			color: #FFCD00;
+			font-size: 22px;
+			font-family: 'Courier', monospace;
+
+		}
+
+		.img1 {
+			padding-top: 3px;
+			padding-bottom: 3px;
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="header">
+		<div class="cont">
+			<div class="img1">
+				<img src="la-forge.png" alt="la forge logo" loading="lazy" width="81" height="81">
+			</div>
+			<div class="forge">La Forge</div>
+
+		</div>
+
+		<div class="img1">
+			<img src="stellenbosch-university.svg" alt="stellenbosch university logo" loading="lazy" width="170"
+				height="80">
+		</div>
+		<div class="img1">
+			<img src="ubisoft.png" alt="ubisoft logo" loading="lazy" width="166" height="54">
+		</div>
+	</div>
+
+
+	<div class="content">
+		<h1>A COMPARISON OF DISCRETE AND SOFT SPEECH UNITS FOR IMPROVED VOICE CONVERSION</h1>
+		<!-- <audio controls="controls" preload="none">
+			<source src="" autoplay="">
+		</audio> -->
+		<!-- <p><b>Code:</b> <a href="https://github.com/ubisoft/ubisoft-laforge-daft-exprt">[GitHub]</a></p> -->
+		<!-- <p></p> -->
+		<!-- <p><b>Paper:</b> <a href="">[arXiv]</a></p> -->
+		<!-- <p></p> -->
+		<p>
+			<b>Authors:</b>
+			Benjamin van Niekerk, Marc-André Carbonneau, Julian Zaïdi, Matthew Baas, Hugo Seuté, Herman Kamper
+		</p>
+		<p>
+			<b>Abstract:</b>
+			The goal of voice conversion is to transform source speech into a target voice, keeping the content
+			unchanged.
+			In this paper, we focus on self-supervised representation learning for voice conversion.
+			Specifically, we compare discrete and soft speech units as input features.
+			We find that discrete representations effectively remove speaker information but discard some linguistic
+			content - leading to mispronunciations.
+			As a solution, we propose soft speech units.
+			To learn soft units, we predict a distribution over discrete speech units.
+			By modeling uncertainty, soft units capture more content information, improving the intelligibility and
+			naturalness of converted speech.
+		</p>
+
+		<p><b>If you are having trouble listening to the audio, try refreshing the page.</b></p>
+
+		<h2 id="intra-lingual">Intra-lingual - English</h2>
+		<p>
+			In this section, we present some speech samples used in the intra-lingual subjective evaluation.<br>
+			We focus on any-to-one conversion using
+			<a href="https://keithito.com/LJ-Speech-Dataset/" target="_blank" rel="noopener noreferrer">LJSpeech</a> as
+			the target and <a href="https://www.openslr.org/12" target="_blank" rel="noopener noreferrer">LibriSpeech
+				dev-clean</a> as the source speech.<br>
+			We compare <b>discrete</b> and <b>soft</b> speech units as well as two baselines. <br>
+		</p>
+
+
+		<table>
+			<thead>
+				<tr>
+					<th>
+						Target speaker: &nbsp;&nbsp;
+					</th>
+					<th>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1Pq0ucDgXXnJTm7LRBb5lvxfBMtCSoNbI">
+						</audio>
+					</th>
+					<th>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1iVdfLjiTSJ0HS67Wr5kwVxRf8OMbnpyQ">
+						</audio>
+					</th>
+				</tr>
+			</thead>
+		</table>
+		<table>
+			<thead>
+				<tr>
+					<th>Source</th>
+					<th>HuBERT-Soft</th>
+					<th>HuBERT-Discrete</th>
+					<th>CPC-Soft</th>
+					<th>CPC-Discrete</th>
+					<th>Cascaded ASR-TTS</th>
+					<th>AutoVC</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1Y3KuPAhB5VcsmIaokBVKu3LUEZOfhSu8">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1Nj-q-5mSVZcbVnq486yMMkbRngJGVXXk">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1Yc46FGtadhUI0ROnmcPyfDN038-61wp7">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1Xu0K5jzAAaBZB2QmLAm_DzK7WZuZQo2R">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1RdGBwIDZHgIkV_ZAaqSYbmogdlBNSyIa">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1XDhKOL9SJFb61OVhgASMDrZ8S-7XFYW6">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1F9D92wg2dz0xf-tvlWESTYauLWM96gOu">
+						</audio>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1SRtscWi0J3wfsyeAstz7a-IyBkWuD2Cb">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1-cLKBL2MBdO0UgJjV8Lu0_ASoOq31CD8">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1m4XD7TgvdmNC_Mbhf8e2sORJyZrsWYI7">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=173sT8V172vavY66MCiucjn-_4HZHD85d">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1FcYeeZugruD4R_J23iRTXMI7MzwiJ2Tx">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1qSbt6EjIhrs_wlochgggtyLD_8-mZDx8">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1SlsZ6NdjuSKjoJ2F8vnQC5koxfKdZ0vo">
+						</audio>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1a639RyeVQ9bgYXR3El0_teuwSijAB2Ao">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1kf8VEYGXK4pF45HrUe7Lj28PJ1-7TN_H">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1NnZ-tgmqcCuDQfcGwu_3zN2N9e10tjeN">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=14qyBI_HX-kV2iTF9O4eC-K7H6Uei8MnM">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1GD_D_LF-5xFHwSi9MtvcSFk8z40_yECv">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=18TsFBXT8JVl2g0pyWllAMnn8i875XnUI">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1o_-913svodXwusydhT-tb4V-nHbtkHhW">
+						</audio>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=153jYhhuGnEzFnai6RHeMBi6FkkF3BVjS">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1bhnA-N9Ri8IrZOmjRMjwRfzx1jShapO0">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1aEXBO14d_kuuFHdy-P2jl1eOQ4ImHyjd">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1RTIGWmGurkhJk6mzwlzBeAm6SghxL8ZX">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1t3m4_vE9G1ccgbLC5XPda56Rj-XkCUNN">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=11MA7f1qjUqJTpaoO1Fzxaz6tItv4-bps">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1yP886NXfj89GGAyJ0o5liA26n6049HAS">
+						</audio>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1d4UOSriV-9xLbaM3cSJgRReU7NV8qevy">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1MBzFkakhkCghLxpDlaF50bZCup0BmE34">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=18gbRfAngX_Qt5LyJbmotgFOfFlcTOdBy">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1e0y5S1UftW7BXH2S3RqcvTENZbLIFOYV">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1vJMoRcq8TWEAmyD6w3CfAQ52Irs3oZjz">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1899PH59gAAw7PLTlqE-bNZpGWHTryDnH">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1H9jHGfzI3T-PA3Sag0MsR4BVqKWFth9D">
+						</audio>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1ub4AyDH_zGQpGrYb_5zo6YaHygiuB4y6">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1rmUc-JOE3vCdMLLJvhj0SNJYc8y9C_aw">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1F0dO448D7eD_JrupIdAL7-jYbVsZvX4q">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1BgDbfy923MwqPcFiEwJNnGyhdSsM9cYG">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1TcE6G3MMueRGJbgB9vFP6owPBlrY6VzD">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1j3pyqsVU17aQN2ftuuf7YzILGpnN2Vis">
+						</audio>
+					</td>
+					<td>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1u_pQYKeeyPCfWCW8G0Wiu5jkdboHz8Rt">
+						</audio>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+
+
+		<h2 id="intra-lingual">Cross-lingual - French</h2>
+		<p>
+			In this section, we present some cross-lingual speech samples for French.<br>
+			We use <a href="https://keithito.com/LJ-Speech-Dataset/" target="_blank"
+				rel="noopener noreferrer">LJSpeech</a> as the target and <a
+				href="https://www.kaggle.com/bryanpark/french-single-speaker-speech-dataset" target="_blank"
+				rel="noopener noreferrer">CSS10</a> as source speech.<br>
+			We compare <b>HuBERT-soft</b> and <b>HuBERT-discrete</b>. <br>
+		</p>
+
+		<table>
+			<thead>
+				<tr>
+					<th>
+						Target speaker: &nbsp;&nbsp;
+					</th>
+					<th>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1YAS2Rrl3ehVbB18yRSq8-lBLvGEmHiY6">
+						</audio>
+					</th>
+					<th>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1QaQ5DtHjtHAunfDkXlMVR-2bTluuruW_">
+						</audio>
+					</th>
+				</tr>
+			</thead>
+		</table>
+		<table>
+			<thead>
+				<tr>
+					<th>Source</th>
+					<th>HuBERT-Soft</th>
+					<th>HuBERT-Discrete</th>
+				</tr>
+			</thead>
+			<tr>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1PfKgrvwLOL_8gqemXiVuIMqE16ZORwy6">
+					</audio>
+				</td>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1gyFXkl1vx_ZXLDreaiLapMqFEZtctPVd">
+					</audio>
+				</td>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1E7hbSHk_aYb66srUg6YEsIXHmImMnKAT">
+					</audio>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1qtIJJB-39_kUnlJXw7Wg8wzluWAzhL1I">
+					</audio>
+				</td>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=18bLDZPA7JZd0dCPXAhP7DUyAKdfFbWIl">
+					</audio>
+				</td>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1zWg2fTJqO70SZirr5VX3G4ezzOb1HHmH">
+					</audio>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1hFRm506d3aqtJMTuyJxQVUqkUBnbB4uU">
+					</audio>
+				</td>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1RRKW54UTGIfc-ggZ6hEWd1M1Up-Qtbzw">
+					</audio>
+				</td>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1qH5bpmshCWb9mGxOk-S5pgaQqBM8whu9">
+					</audio>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1vuaQk7HdRQU87akC1PrplTYoJvPgP5pB">
+					</audio>
+				</td>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1pFF1qMSalDUVK2wwjoVCqb3Juw7toGA_">
+					</audio>
+				</td>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1jw_pDEJYwY9Mhhi2Df8fWG0OOmEOmfWX">
+					</audio>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+		<br>
+
+		<h2 id="intra-lingual">Cross-lingual - Afrikaans</h2>
+		<p>
+			In this section, we present some cross-lingual speech samples for Afrikaans (one of South Africa's official
+			languages).<br>
+			We use <a href="https://keithito.com/LJ-Speech-Dataset/" target="_blank"
+				rel="noopener noreferrer">LJSpeech</a>
+			as the target and a <a href="https://www.openslr.org/32/" target="_blank" rel="noopener noreferrer">South
+				African languages corpus</a> as source speech.<br>
+			We compare <b>HuBERT-soft</b> and <b>HuBERT-discrete</b>. <br>
+		</p>
+
+		<table>
+			<thead>
+				<tr>
+					<th>
+						Target speaker: &nbsp;&nbsp;
+					</th>
+					<th>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1Vbovx7du3aBSsobySQC_IFBn6Wtbg44F">
+						</audio>
+					</th>
+					<th>
+						<audio controls preload
+							src="https://drive.google.com/uc?export=preview&id=1342PQsDpNhdZzDnD5Uj0oU-lr3elQhni">
+						</audio>
+					</th>
+				</tr>
+			</thead>
+		</table>
+		<table>
+			<thead>
+				<tr>
+					<th>Source</th>
+					<th>HuBERT-Soft</th>
+					<th>HuBERT-Discrete</th>
+				</tr>
+			</thead>
+			<tr>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=15C6RrWI5OFTGd_WgUcAfayOwbLT94_6B">
+					</audio>
+				</td>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1WHvk92vwyk0OvSoVrFJc542HhY6uen7g">
+					</audio>
+				</td>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1SHWhOcxoeRo9zaSdfZgFG3Um4zBQDcaI">
+					</audio>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=11ivoJZCz47VPdcPFGPDBWKE99LyLsGoD">
+					</audio>
+				</td>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1ZZ6n3laK1FHvRI6zbbgjImLdkIyuvw8Q">
+					</audio>
+				</td>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1zYpQxl8m0Y0RId9by47LmhdwUj1JZFyU">
+					</audio>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1lsa5-404XF6SKsA4PAMzoiYsBgYKYy07">
+					</audio>
+				</td>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1-fC-KLR1nNNTL0Q-STAQfr4h812bovXU">
+					</audio>
+				</td>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1zPGBWlgtbyPeo5JMk2w1DCJPCuw3j5Gb">
+					</audio>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1dRLpuThoVZNxW5wUiYX4TsJsYgyVsnhb">
+					</audio>
+				</td>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1m5kpcD0uggPohx2OYrir__Z7J-nIegtH">
+					</audio>
+				</td>
+				<td>
+					<audio controls preload
+						src="https://drive.google.com/uc?export=preview&id=1XXmlz6KmRc8AcxlWTK3b9QbTOerBea1s">
+					</audio>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+
+		<!-- <br>
+		<i>Copyright © 2021 Ubisoft Entertainment Inc. All rights reserved.</i> -->
+	</div>
+
+</body>
+
+</html>
