@@ -8,6 +8,14 @@
 
 Official repository for [A Comparison of Discrete and Soft Speech Units for Improved Voice Conversion](https://ieeexplore.ieee.org/abstract/document/9746484). Audio samples can be found [here](https://bshall.github.io/soft-vc/). Colab demo can be found [here](https://colab.research.google.com/github/bshall/soft-vc/blob/main/soft-vc-demo.ipynb).
 
+**Abstract:** The goal of voice conversion is to transform source speech into a target voice, keeping the content unchanged. In this paper, we focus on self-supervised representation learning for voice conversion. Specifically, we compare discrete and soft speech units as input features. We find that discrete representations effectively remove speaker information but discard some linguistic content – leading to mispronunciations. As a solution, we propose soft speech units learned by predicting a distribution over the discrete units. By modeling uncertainty, soft units capture more content information, improving the intelligibility and naturalness of converted speech.
+
+For modularity, each component of the system is housed in a separate repository. Please visit the following links for more details:
+
+- [HuBERT content encoders](https://github.com/bshall/hubert)
+- [Acoustic Models](https://github.com/bshall/acoustic-model)
+- [HiFiGAN vocoder](https://github.com/bshall/hifigan)
+
 <div align="center">
     <img width="100%" alt="Soft-VC"
       src="https://raw.githubusercontent.com/bshall/hubert/main/diagram.png">
@@ -17,12 +25,6 @@ Official repository for [A Comparison of Discrete and Soft Speech Units for Impr
     <strong>Fig 1:</strong> Architecture of the voice conversion system. a) The <strong>discrete</strong> content encoder clusters audio features to produce a sequence of discrete speech units. b) The <strong>soft</strong> content encoder is trained to predict the discrete units. The acoustic model transforms the discrete/soft speech units into a target spectrogram. The vocoder converts the spectrogram into an audio waveform.
   </sup>
 </div>
-
-For modularity, each component of the system is housed in a separate repository. Please visit the following links for more details:
-
-- [HuBERT content encoders](https://github.com/bshall/hubert)
-- [Acoustic Models](https://github.com/bshall/acoustic-model)
-- [HiFiGAN vocoder](https://github.com/bshall/hifigan)
 
 ## Example Usage
 
