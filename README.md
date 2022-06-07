@@ -18,7 +18,7 @@ For modularity, each component of the system is housed in a separate repository.
 
 <div align="center">
     <img width="100%" alt="Soft-VC"
-      src="https://raw.githubusercontent.com/bshall/hubert/main/diagram.png">
+      src="https://raw.githubusercontent.com/bshall/soft-vc/main/soft-vc.png">
 </div>
 <div>
   <sup>
