@@ -1,10 +1,8 @@
-<p align="center">
-    <a target="_blank" href="https://colab.research.google.com/github/bshall/soft-vc/blob/main/soft-vc-demo.ipynb">
-        <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
-    </a>
-</p>
-
 # Soft Speech Units for Improved Voice Conversion
+
+[![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2111.02392)
+[![demo](https://img.shields.io/static/v1?message=Audio%20Samples&logo=Github&labelColor=grey&color=blue&logoColor=white&label=%20&style=flat)](https://bshall.github.io/soft-vc/)
+[![colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bshall/soft-vc/blob/main/soft-vc-demo.ipynb)
 
 Official repository for [A Comparison of Discrete and Soft Speech Units for Improved Voice Conversion](https://ieeexplore.ieee.org/abstract/document/9746484). Audio samples can be found [here](https://bshall.github.io/soft-vc/). Colab demo can be found [here](https://colab.research.google.com/github/bshall/soft-vc/blob/main/soft-vc-demo.ipynb).
 
@@ -34,13 +32,13 @@ For modularity, each component of the system is housed in a separate repository.
 import torch, torchaudio
 
 # Load the content encoder (either hubert_soft or hubert_discrete)
-hubert = torch.hub.load("bshall/hubert:main", "hubert_soft").cuda()
+hubert = torch.hub.load("bshall/hubert:main", "hubert_soft", trust_repo=True).cuda()
 
 # Load the acoustic model (either hubert_soft or hubert_discrete)
-acoustic = torch.hub.load("bshall/acoustic-model:main", "hubert_soft").cuda()
+acoustic = torch.hub.load("bshall/acoustic-model:main", "hubert_soft", trust_repo=True).cuda()
 
 # Load the vocoder (either hifigan_hubert_soft or hifigan_hubert_discrete)
-hifigan = torch.hub.load("bshall/hifigan:main", "hifigan_hubert_soft").cuda()
+hifigan = torch.hub.load("bshall/hifigan:main", "hifigan_hubert_soft", trust_repo=True).cuda()
 
 # Load the source audio
 source, sr = torchaudio.load("path/to/wav")
