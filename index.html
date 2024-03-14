@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Soft-VC Demo Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 26px;
+            margin: 0;
+        }
+
+
+        table {
+            display: block;
+            width: 100%;
+            border-collapse: collapse;
+            overflow: auto;
+        }
+
+        .header {
+            background: #000000;
+            padding: 2px;
+            display: flex;
+            align-items: center;
+
+
+        }
+
+        .cont {
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            flex-basis: 100%
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .forge {
+            color: #FFCD00;
+            font-size: 22px;
+            font-family: 'Courier', monospace;
+
+        }
+
+        .img1 {
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="cont">
+            <div class="img1">
+                <img src="la-forge.png" alt="la forge logo" loading="lazy" width="81" height="81">
+            </div>
+            <div class="forge">La Forge</div>
+
+        </div>
+
+        <div class="img1">
+            <img src="stellenbosch-university.svg" alt="stellenbosch university logo" loading="lazy" width="170"
+                height="80">
+        </div>
+        <div class="img1">
+            <img src="ubisoft.png" alt="ubisoft logo" loading="lazy" width="166" height="54">
+        </div>
+    </div>
+
+
+    <div class="content">
+        <h1>A COMPARISON OF DISCRETE AND SOFT SPEECH UNITS FOR IMPROVED VOICE CONVERSION</h1>
+        <p>
+            <b>Authors:</b>
+            Benjamin van Niekerk, Marc-André Carbonneau, Julian Zaïdi, Matthew Baas, Hugo Seuté, Herman Kamper
+        </p>
+        <p>
+            <b>Abstract:</b>
+            The goal of voice conversion is to transform source speech into a target voice, keeping the content
+            unchanged.
+            In this paper, we focus on self-supervised representation learning for voice conversion.
+            Specifically, we compare discrete and soft speech units as input features.
+            We find that discrete representations effectively remove speaker information but discard some linguistic
+            content - leading to mispronunciations.
+            As a solution, we propose soft speech units.
+            To learn soft units, we predict a distribution over discrete speech units.
+            By modeling uncertainty, soft units capture more content information, improving the intelligibility and
+            naturalness of converted speech.
+        </p>
+
+        <p><b>If you are having trouble listening to the audio, try refreshing the page.</b></p>
+
+        <h2 id="intra-lingual">Intra-lingual - English</h2>
+        <p>
+            In this section, we present some speech samples used in the intra-lingual subjective evaluation.<br>
+            We focus on any-to-one conversion using
+            <a href="https://keithito.com/LJ-Speech-Dataset/" target="_blank" rel="noopener noreferrer">LJSpeech</a> as
+            the target and <a href="https://www.openslr.org/12" target="_blank" rel="noopener noreferrer">LibriSpeech
+                dev-clean</a> as the source speech.<br>
+            We compare <b>discrete</b> and <b>soft</b> speech units as well as two baselines. <br>
+        </p>
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Target speaker: &nbsp;&nbsp;
+                    </th>
+                    <th>
+                        <audio controls preload="metadata"
+                            src="https://f003.backblazeb2.com/file/soft-vc/target/0-target.wav">
+                        </audio>
+                    </th>
+                    <th>
+                        <audio controls preload="metadata"
+                            src="https://f003.backblazeb2.com/file/soft-vc/target/1-target.wav">
+                        </audio>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Source</th>
+                    <th>HuBERT-Soft</th>
+                    <th>HuBERT-Discrete</th>
+                    <th>CPC-Soft</th>
+                    <th>CPC-Discrete</th>
+                    <th>Cascaded ASR-TTS</th>
+                    <th>AutoVC</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <audio name="3752-4944-0027" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/source/3752-4944-0027.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="3752-4944-0027" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/hubert-soft/3752-4944-0027.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="3752-4944-0027" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/hubert-discrete/3752-4944-0027.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="3752-4944-0027" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/cpc-soft/3752-4944-0027.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="3752-4944-0027" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/cpc-discrete/3752-4944-0027.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="3752-4944-0027" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/cascade/3752-4944-0027.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="3752-4944-0027" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/autovc/3752-4944-0027.wav"></audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <audio name="1462-170142-0011" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/source/1462-170142-0011.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="1462-170142-0011" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/hubert-soft/1462-170142-0011.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="1462-170142-0011" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/hubert-discrete/1462-170142-0011.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="1462-170142-0011" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/cpc-soft/1462-170142-0011.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="1462-170142-0011" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/cpc-discrete/1462-170142-0011.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="1462-170142-0011" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/cascade/1462-170142-0011.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="1462-170142-0011" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/autovc/1462-170142-0011.wav"></audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <audio name="2412-153948-0014" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/source/2412-153948-0014.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="2412-153948-0014" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/hubert-soft/2412-153948-0014.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="2412-153948-0014" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/hubert-discrete/2412-153948-0014.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="2412-153948-0014" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/cpc-soft/2412-153948-0014.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="2412-153948-0014" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/cpc-discrete/2412-153948-0014.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="2412-153948-0014" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/cascade/2412-153948-0014.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="2412-153948-0014" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/autovc/2412-153948-0014.wav"></audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <audio name="422-122949-0031" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/source/422-122949-0031.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="422-122949-0031" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/hubert-soft/422-122949-0031.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="422-122949-0031" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/hubert-discrete/422-122949-0031.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="422-122949-0031" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/cpc-soft/422-122949-0031.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="422-122949-0031" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/cpc-discrete/422-122949-0031.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="422-122949-0031" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/cascade/422-122949-0031.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="422-122949-0031" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/autovc/422-122949-0031.wav"></audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <audio name="5338-24615-0012" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/source/5338-24615-0012.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="5338-24615-0012" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/hubert-soft/5338-24615-0012.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="5338-24615-0012" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/hubert-discrete/5338-24615-0012.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="5338-24615-0012" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/cpc-soft/5338-24615-0012.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="5338-24615-0012" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/cpc-discrete/5338-24615-0012.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="5338-24615-0012" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/cascade/5338-24615-0012.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="5338-24615-0012" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/autovc/5338-24615-0012.wav"></audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <audio name="6241-61946-0002" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/source/6241-61946-0002.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="6241-61946-0002" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/hubert-soft/6241-61946-0002.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="6241-61946-0002" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/hubert-discrete/6241-61946-0002.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="6241-61946-0002" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/cpc-soft/6241-61946-0002.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="6241-61946-0002" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/cpc-discrete/6241-61946-0002.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="6241-61946-0002" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/cascade/6241-61946-0002.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="6241-61946-0002" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/english/autovc/6241-61946-0002.wav"></audio>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+
+
+        <h2 id="intra-lingual">Cross-lingual - French</h2>
+        <p>
+            In this section, we present some cross-lingual speech samples for French.<br>
+            We use <a href="https://keithito.com/LJ-Speech-Dataset/" target="_blank"
+                rel="noopener noreferrer">LJSpeech</a> as the target and <a
+                href="https://www.kaggle.com/bryanpark/french-single-speaker-speech-dataset" target="_blank"
+                rel="noopener noreferrer">CSS10</a> as source speech.<br>
+            We compare <b>HuBERT-soft</b> and <b>HuBERT-discrete</b>. <br>
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Target speaker: &nbsp;&nbsp;
+                    </th>
+                    <th>
+                        <audio controls preload="metadata"
+                            src="https://f003.backblazeb2.com/file/soft-vc/target/2-target.wav">
+                        </audio>
+                    </th>
+                    <th>
+                        <audio controls preload="metadata"
+                            src="https://f003.backblazeb2.com/file/soft-vc/target/3-target.wav">
+                        </audio>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Source</th>
+                    <th>HuBERT-Soft</th>
+                    <th>HuBERT-Discrete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <audio name="lesmis_0002" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/french/source/lesmis_0002.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="lesmis_0002" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/french/hubert-soft/lesmis_0002.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="lesmis_0002" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/french/hubert-hard/lesmis_0002.wav"></audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <audio name="lesmis_0012" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/french/source/lesmis_0012.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="lesmis_0012" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/french/hubert-soft/lesmis_0012.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="lesmis_0012" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/french/hubert-hard/lesmis_0012.wav"></audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <audio name="lesmis_0025" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/french/source/lesmis_0025.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="lesmis_0025" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/french/hubert-soft/lesmis_0025.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="lesmis_0025" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/french/hubert-hard/lesmis_0025.wav"></audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <audio name="lesmis_0065" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/french/source/lesmis_0065.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="lesmis_0065" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/french/hubert-soft/lesmis_0065.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="lesmis_0065" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/french/hubert-hard/lesmis_0065.wav"></audio>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+
+        <h2 id="intra-lingual">Cross-lingual - Afrikaans</h2>
+        <p>
+            In this section, we present some cross-lingual speech samples for Afrikaans (one of South Africa's official
+            languages).<br>
+            We use <a href="https://keithito.com/LJ-Speech-Dataset/" target="_blank"
+                rel="noopener noreferrer">LJSpeech</a>
+            as the target and a <a href="https://www.openslr.org/32/" target="_blank" rel="noopener noreferrer">South
+                African languages corpus</a> as source speech.<br>
+            We compare <b>HuBERT-soft</b> and <b>HuBERT-discrete</b>. <br>
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Target speaker: &nbsp;&nbsp;
+                    </th>
+                    <th>
+                        <audio controls preload="metadata"
+                            src="https://f003.backblazeb2.com/file/soft-vc/target/4-target.wav">
+                        </audio>
+                    </th>
+                    <th>
+                        <audio controls preload="metadata"
+                            src="https://f003.backblazeb2.com/file/soft-vc/target/5-target.wav">
+                        </audio>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Source</th>
+                    <th>HuBERT-Soft</th>
+                    <th>HuBERT-Discrete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <audio name="afr_0184_0335869294" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/afrikaans/source/afr_0184_0335869294.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="afr_0184_0335869294" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/afrikaans/hubert-soft/afr_0184_0335869294.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="afr_0184_0335869294" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/afrikaans/hubert-hard/afr_0184_0335869294.wav"></audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <audio name="afr_0184_0598953657" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/afrikaans/source/afr_0184_0598953657.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="afr_0184_0598953657" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/afrikaans/hubert-soft/afr_0184_0598953657.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="afr_0184_0598953657" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/afrikaans/hubert-hard/afr_0184_0598953657.wav"></audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <audio name="afr_0184_1599466164" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/afrikaans/source/afr_0184_1599466164.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="afr_0184_1599466164" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/afrikaans/hubert-soft/afr_0184_1599466164.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="afr_0184_1599466164" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/afrikaans/hubert-hard/afr_0184_1599466164.wav"></audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <audio name="afr_0184_4244857816" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/afrikaans/source/afr_0184_4244857816.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="afr_0184_4244857816" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/afrikaans/hubert-soft/afr_0184_4244857816.wav"></audio>
+                    </td>
+                    <td>
+                        <audio name="afr_0184_4244857816" controls preload="metadata" src="https://f003.backblazeb2.com/file/soft-vc/afrikaans/hubert-hard/afr_0184_4244857816.wav"></audio>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
