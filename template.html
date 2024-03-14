@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Soft-VC Demo Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 26px;
+            margin: 0;
+        }
+
+
+        table {
+            display: block;
+            width: 100%;
+            border-collapse: collapse;
+            overflow: auto;
+        }
+
+        .header {
+            background: #000000;
+            padding: 2px;
+            display: flex;
+            align-items: center;
+
+
+        }
+
+        .cont {
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            flex-basis: 100%
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .forge {
+            color: #FFCD00;
+            font-size: 22px;
+            font-family: 'Courier', monospace;
+
+        }
+
+        .img1 {
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="cont">
+            <div class="img1">
+                <img src="la-forge.png" alt="la forge logo" loading="lazy" width="81" height="81">
+            </div>
+            <div class="forge">La Forge</div>
+
+        </div>
+
+        <div class="img1">
+            <img src="stellenbosch-university.svg" alt="stellenbosch university logo" loading="lazy" width="170"
+                height="80">
+        </div>
+        <div class="img1">
+            <img src="ubisoft.png" alt="ubisoft logo" loading="lazy" width="166" height="54">
+        </div>
+    </div>
+
+
+    <div class="content">
+        <h1>A COMPARISON OF DISCRETE AND SOFT SPEECH UNITS FOR IMPROVED VOICE CONVERSION</h1>
+        <p>
+            <b>Authors:</b>
+            Benjamin van Niekerk, Marc-André Carbonneau, Julian Zaïdi, Matthew Baas, Hugo Seuté, Herman Kamper
+        </p>
+        <p>
+            <b>Abstract:</b>
+            The goal of voice conversion is to transform source speech into a target voice, keeping the content
+            unchanged.
+            In this paper, we focus on self-supervised representation learning for voice conversion.
+            Specifically, we compare discrete and soft speech units as input features.
+            We find that discrete representations effectively remove speaker information but discard some linguistic
+            content - leading to mispronunciations.
+            As a solution, we propose soft speech units.
+            To learn soft units, we predict a distribution over discrete speech units.
+            By modeling uncertainty, soft units capture more content information, improving the intelligibility and
+            naturalness of converted speech.
+        </p>
+
+        <p><b>If you are having trouble listening to the audio, try refreshing the page.</b></p>
+
+        <h2 id="intra-lingual">Intra-lingual - English</h2>
+        <p>
+            In this section, we present some speech samples used in the intra-lingual subjective evaluation.<br>
+            We focus on any-to-one conversion using
+            <a href="https://keithito.com/LJ-Speech-Dataset/" target="_blank" rel="noopener noreferrer">LJSpeech</a> as
+            the target and <a href="https://www.openslr.org/12" target="_blank" rel="noopener noreferrer">LibriSpeech
+                dev-clean</a> as the source speech.<br>
+            We compare <b>discrete</b> and <b>soft</b> speech units as well as two baselines. <br>
+        </p>
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Target speaker: &nbsp;&nbsp;
+                    </th>
+                    <th>
+                        <audio controls preload="metadata"
+                            src="https://f003.backblazeb2.com/file/soft-vc/target/0-target.wav">
+                        </audio>
+                    </th>
+                    <th>
+                        <audio controls preload="metadata"
+                            src="https://f003.backblazeb2.com/file/soft-vc/target/1-target.wav">
+                        </audio>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Source</th>
+                    <th>HuBERT-Soft</th>
+                    <th>HuBERT-Discrete</th>
+                    <th>CPC-Soft</th>
+                    <th>CPC-Discrete</th>
+                    <th>Cascaded ASR-TTS</th>
+                    <th>AutoVC</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#english}}
+                <tr>
+                    {{#.}}
+                    <td>
+                        <audio name="{{name}}" controls preload="metadata" src="{{link}}"></audio>
+                    </td>
+                    {{/.}}
+                </tr>
+                {{/english}}
+            </tbody>
+        </table>
+        <br>
+
+
+        <h2 id="intra-lingual">Cross-lingual - French</h2>
+        <p>
+            In this section, we present some cross-lingual speech samples for French.<br>
+            We use <a href="https://keithito.com/LJ-Speech-Dataset/" target="_blank"
+                rel="noopener noreferrer">LJSpeech</a> as the target and <a
+                href="https://www.kaggle.com/bryanpark/french-single-speaker-speech-dataset" target="_blank"
+                rel="noopener noreferrer">CSS10</a> as source speech.<br>
+            We compare <b>HuBERT-soft</b> and <b>HuBERT-discrete</b>. <br>
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Target speaker: &nbsp;&nbsp;
+                    </th>
+                    <th>
+                        <audio controls preload="metadata"
+                            src="https://f003.backblazeb2.com/file/soft-vc/target/2-target.wav">
+                        </audio>
+                    </th>
+                    <th>
+                        <audio controls preload="metadata"
+                            src="https://f003.backblazeb2.com/file/soft-vc/target/3-target.wav">
+                        </audio>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Source</th>
+                    <th>HuBERT-Soft</th>
+                    <th>HuBERT-Discrete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#french}}
+                <tr>
+                    {{#.}}
+                    <td>
+                        <audio name="{{name}}" controls preload="metadata" src="{{link}}"></audio>
+                    </td>
+                    {{/.}}
+                </tr>
+                {{/french}}
+            </tbody>
+        </table>
+        <br>
+
+        <h2 id="intra-lingual">Cross-lingual - Afrikaans</h2>
+        <p>
+            In this section, we present some cross-lingual speech samples for Afrikaans (one of South Africa's official
+            languages).<br>
+            We use <a href="https://keithito.com/LJ-Speech-Dataset/" target="_blank"
+                rel="noopener noreferrer">LJSpeech</a>
+            as the target and a <a href="https://www.openslr.org/32/" target="_blank" rel="noopener noreferrer">South
+                African languages corpus</a> as source speech.<br>
+            We compare <b>HuBERT-soft</b> and <b>HuBERT-discrete</b>. <br>
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Target speaker: &nbsp;&nbsp;
+                    </th>
+                    <th>
+                        <audio controls preload="metadata"
+                            src="https://f003.backblazeb2.com/file/soft-vc/target/4-target.wav">
+                        </audio>
+                    </th>
+                    <th>
+                        <audio controls preload="metadata"
+                            src="https://f003.backblazeb2.com/file/soft-vc/target/5-target.wav">
+                        </audio>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Source</th>
+                    <th>HuBERT-Soft</th>
+                    <th>HuBERT-Discrete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#afrikaans}}
+                <tr>
+                    {{#.}}
+                    <td>
+                        <audio name="{{name}}" controls preload="metadata" src="{{link}}"></audio>
+                    </td>
+                    {{/.}}
+                </tr>
+                {{/afrikaans}}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
